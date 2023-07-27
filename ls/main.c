@@ -22,7 +22,8 @@ int main(void)
 
 	while ((entry = readdir(directory)) != NULL)
 	{
-		printf("%s  ", entry->d_name);
+		if (entry->d_name[0] != '.')
+			printf("%s  ", entry->d_name);
 	}
 	printf("\n");
 	if (closedir(directory) == -1)
