@@ -22,9 +22,9 @@ int main(void)
 
 	while ((entry = readdir(directory)) != NULL)
 	{
-		printf("%s\n", entry->d_name);
+		printf("%s  ", entry->d_name);
 	}
-	
+	printf("\n");
 	if (closedir(directory) == -1)
 	{
 		fprintf(stderr, "Error closing directory\n");
