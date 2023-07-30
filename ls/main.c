@@ -1,35 +1,25 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "hls.h"
 
 /**
  * main - main function/test
  *
  * Return: 0 on success
  */
-int main(void)
+int main(int argc, char **argv)
 {
-	DIR *directory;
-	struct dirent *entry;
+	int i;
 
-	directory = opendir(".");
-
-	if (directory == NULL)
+	if (argc == 1)
 	{
-		fprintf(stderr, "Error opening directory\n");
-		return (1);
+		hls(".");
 	}
-
-	while ((entry = readdir(directory)) != NULL)
+	check_file(argc, argv);
+	for (i = 0; i < argc; i++)
 	{
-		if (entry->d_name[0] != '.')
-			printf("%s  ", entry->d_name);
-	}
-	printf("\n");
-	if (closedir(directory) == -1)
-	{
-		fprintf(stderr, "Error closing directory\n");
-		return (1);
+		hls(argv[i]);
 	}
 
 	return (0);
